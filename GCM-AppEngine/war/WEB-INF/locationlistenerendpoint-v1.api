@@ -1,0 +1,243 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://sinuous-moment-658.appspot.com/_ah/api",
+  "name" : "locationlistenerendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://sinuous-moment-658.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "gcm.com",
+  "ownerName" : "gcm.com",
+  "methods" : {
+    "locationlistenerendpoint.updateLocationListener" : {
+      "path" : "locationlistener",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gcm.LocationListenerEndpoint.updateLocationListener",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "locationlistenerendpoint.insertLocationListener" : {
+      "path" : "locationlistener",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gcm.LocationListenerEndpoint.insertLocationListener",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "locationlistenerendpoint.getLocationListener" : {
+      "path" : "locationlistener/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gcm.LocationListenerEndpoint.getLocationListener",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "locationlistenerendpoint.alertPeople" : {
+      "path" : "alertPeople/{message}/{subject}/{type}/{latitude}/{longitude}/{time}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gcm.LocationListenerEndpoint.alertPeople",
+      "request" : {
+        "parameters" : {
+          "message" : {
+            "type" : "string",
+            "required" : true
+          },
+          "subject" : {
+            "type" : "string",
+            "required" : true
+          },
+          "type" : {
+            "type" : "string",
+            "required" : true
+          },
+          "latitude" : {
+            "type" : "double",
+            "required" : true
+          },
+          "longitude" : {
+            "type" : "double",
+            "required" : true
+          },
+          "time" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "locationlistenerendpoint.removeLocationListener" : {
+      "path" : "locationlistener/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gcm.LocationListenerEndpoint.removeLocationListener",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "LocationListener" : {
+        "id" : "LocationListener",
+        "type" : "object",
+        "properties" : {
+          "listenerId" : {
+            "$ref" : "Key"
+          },
+          "deviceCode" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "distance" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "StringCollection" : {
+        "id" : "StringCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.gcm.LocationListenerEndpoint.updateLocationListener" : {
+        "request" : {
+          "$ref" : "LocationListener"
+        },
+        "response" : {
+          "$ref" : "LocationListener"
+        }
+      },
+      "com.gcm.LocationListenerEndpoint.insertLocationListener" : {
+        "request" : {
+          "$ref" : "LocationListener"
+        },
+        "response" : {
+          "$ref" : "LocationListener"
+        }
+      },
+      "com.gcm.LocationListenerEndpoint.getLocationListener" : {
+        "response" : {
+          "$ref" : "LocationListener"
+        }
+      },
+      "com.gcm.LocationListenerEndpoint.alertPeople" : {
+        "response" : {
+          "$ref" : "StringCollection"
+        }
+      },
+      "com.gcm.LocationListenerEndpoint.removeLocationListener" : {
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>unquote</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="polymer/components/platform/platform.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <link rel="import" href="polymer/components/font-roboto/roboto.html">
+    <link rel="import" href="polymer/components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="polymer/components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="polymer/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="polymer/components/google-apis/google-client-api.html">
+    <link rel="import" href="polymer/components/google-apis/google-apis.html">
+    <link rel="import" href="polymer/html/post-list.html">
+    <link rel="import" src="polymer/components/bower_components/google-map/google-map.html">
+    <link href="polymer/components/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="polymer/styles/main.css" rel="stylesheet">
+
+
+</head>
+
+<body unresolved>
+
+    <core-header-panel>
+
+        <core-toolbar>
+
+            <paper-tabs id="tabs" selected="all" self-end>
+                <paper-tab name="all">All</paper-tab>
+                <paper-tab name="favorites">Favorites</paper-tab>
+            </paper-tabs>
+
+        </core-toolbar>
+
+        <div id="map_canvas" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+
+        <div id="post-list" class="col-lg-4 col-md-4 col-sm-8 col-xs-8">
+            <post-list show="all"></post-list>
+        </div>
+
+
+
+    </core-header-panel>
+
+    <script>
+        var tabs = document.querySelector('paper-tabs');
+        var list = document.querySelector('post-list');
+
+        tabs.addEventListener('core-select', function() {
+            list.show = tabs.selected;
+        });
+
+        function initialize() {
+            var mapCanvas = document.getElementById('map_canvas');
+            var mapOptions = {
+                center: new google.maps.LatLng(44.5403, -78.5463),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <google-api-loader id="listPosts" appId="sinuous-moment-658" name="postendpoint" version="v1">
+    </google-api-loader>
+
+    <script>
+        window.addEventListener('api-load', function(e) {
+            console.log(e.target.localName + ' loaded');
+        });
+
+        var listPosts = document.getElementById('listPosts');
+        listPosts.addEventListener('google-api-load', function(event) {
+            var request = gapi.client.postendpoint.listPost();
+            request.execute(function(resp) {
+                console.log(resp);
+            });
+        });
+    </script>
+</body>
+
+</html>

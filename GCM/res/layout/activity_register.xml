@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:gravity="center_vertical|center_horizontal|center"
+    android:orientation="vertical" >
+    
+  <TextView 
+      android:id="@+id/msgView"
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight="4"
+/>
+    	
+  <Button
+      android:id="@+id/btn_gcmRegister"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="Register" />
+
+  <EditText
+      android:id="@+id/et_messageSend"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+	android:layout_weight="1"
+      android:ems="10" >
+
+      <requestFocus />
+  </EditText>
+
+  <Button
+      android:id="@+id/btn_gcmSend"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="send" />
+
+</LinearLayout>

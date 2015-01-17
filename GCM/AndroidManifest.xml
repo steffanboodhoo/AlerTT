@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="steffbood.crimewatch.activities"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="20" />
+
+    <permission
+        android:name="steffbood.crimewatch.activities.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="steffbood.crimewatch.activities.permission.C2D_MESSAGE" />
+
+    <permission
+        android:name="steffbood.crimewatch.activities.permission.MAP_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="steffbood.crimewatch.activities.permission.MAP_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_970554_web"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        ﻿
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDjkUXAOSpYoHzA3d7tJBKg8pkY4auKVac" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+           
+        </activity>
+        <activity
+            android:name=".MapMain"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".CreateListener"
+            android:label="@string/app_name" >
+        </activity>
+
+        <receiver
+            android:name="crimewatch.services.MyBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="crimewatch.services" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="crimewatch.services" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".RegisterActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".NewPost"
+            android:label="@string/title_activity_new_post"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="steffbood.crimewatch.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Received"
+            android:label="@string/title_activity_received"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="steffbood.crimewatch.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MainDrawedActivity"
+            android:label="AlerTT" 
+            android:theme="@style/Theme.AppCompat.Light">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
